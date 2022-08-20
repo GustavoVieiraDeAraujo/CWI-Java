@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CalculadoraTeste{
+public class CalculadoraTest{
 
     @Test
     public void deveSomarCorretamenteQuandoOsValoresForemInteiros(){
