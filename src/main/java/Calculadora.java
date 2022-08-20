@@ -1,4 +1,4 @@
-public class Calculadora {
+public class Calculadora{
     // Qual o problema? Criar uma calculadora
     // Quais são os dados necessarios ? Dois valores para realizar as operações
     // Quais operações necessarias? soma, subtração, divisão, multiplicação
@@ -33,5 +33,4 @@ public class Calculadora {
         double x2 = (-b + Math.sqrt(delta)) / (2*a);
         return x1+x2;
     }
-
 }

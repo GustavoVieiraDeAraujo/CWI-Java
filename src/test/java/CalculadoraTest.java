@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CalculadoraTeste {
+public class CalculadoraTeste{
 
     @Test
     public void deveSomarCorretamenteQuandoOsValoresForemInteiros(){
@@ -80,5 +80,4 @@ public class CalculadoraTeste {
         Calculadora calculadora = new Calculadora();
         Assert.assertEquals(1.5,calculadora.bhaskara(2,-3,1),0);
     }
-
 }
