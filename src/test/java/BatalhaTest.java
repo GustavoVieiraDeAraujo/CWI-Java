@@ -1,12 +1,11 @@
-import BatalhaNinja.Batalha;
-import BatalhaNinja.Jutsu;
-import BatalhaNinja.Ninja;
+import batalhaninja.batalhaninja.Batalha;
+import batalhaninja.batalhaninja.Jutsu;
+import batalhaninja.batalhaninja.Ninja;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BatalhaTest {
-
     @Test
     public void deveRetornarNinjaComJutsuMaisForteSeOsDoisGastamOMesmoChakraParaAtacar(){
         Jutsu cloneDasSombras = new Jutsu(5, 10);
@@ -59,5 +58,4 @@ public class BatalhaTest {
 
         Assert.assertEquals(nagato, vencedor);
     }
-
 }

@@ -1,4 +1,4 @@
-package BatalhaNinja;
+package batalhaninja.batalhaninja;
 
 public class Ninja {
     private int chakra = 100;

@@ -1,4 +1,4 @@
-package BatalhaNinja;
+package batalhaninja.batalhaninja;
 
 public class Jutsu {
     private int quantidadeDeChakra;

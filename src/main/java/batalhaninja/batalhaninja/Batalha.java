@@ -1,6 +1,7 @@
-package BatalhaNinja;
+package batalhaninja.batalhaninja;
 
 public class Batalha {
+
     public Ninja lutar(Ninja primeiroNinja, Ninja segundoNinja){
         if (primeiroNinja.getNome() == "Itachi") {
             return primeiroNinja;
@@ -18,4 +19,5 @@ public class Batalha {
             }
         }
     }
+
 }

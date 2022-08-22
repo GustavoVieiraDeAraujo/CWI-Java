@@ -1,9 +1,9 @@
-import BatalhaNinja.Jutsu;
+import batalhaninja.batalhaninja.Jutsu;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 public class JutsuTest {
-
     @Test
     public void verificaSeOsAtributosDoJutsuEstaoCorreto(){
         Jutsu jutsu = new Jutsu(5,10);
@@ -15,5 +15,4 @@ public class JutsuTest {
         Jutsu jutsu = new Jutsu(7,17);
         Assert.assertArrayEquals(new int[] {0, 0}, new int[] {jutsu.getQuantidadeDeChakra(), jutsu.getQuantidadeDeChakraQueAbateDoOponente()});
     }
-
 }

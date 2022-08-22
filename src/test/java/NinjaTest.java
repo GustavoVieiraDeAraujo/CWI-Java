@@ -1,5 +1,5 @@
-import BatalhaNinja.Jutsu;
-import BatalhaNinja.Ninja;
+import batalhaninja.batalhaninja.Jutsu;
+import batalhaninja.batalhaninja.Ninja;
 
 import org.junit.Assert;
 import org.junit.Test;
