@@ -3,9 +3,9 @@ package batalhaninja.batalhaninja;
 public class Batalha {
 
     public Ninja lutar(Ninja primeiroNinja, Ninja segundoNinja){
-        if (primeiroNinja != null && primeiroNinja.getNome().equals("Itachi")) {
+        if (primeiroNinja.getNome().equals("Itachi")) {
             return primeiroNinja;
-        } else if (segundoNinja != null && segundoNinja.getNome().equals("Itachi")) {
+        } else if (segundoNinja.getNome().equals("Itachi")) {
             return segundoNinja;
         }else{
             for (int i=0; i < 3; i++){
