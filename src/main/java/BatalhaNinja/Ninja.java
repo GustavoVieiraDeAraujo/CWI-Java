@@ -1,3 +1,5 @@
+package BatalhaNinja;
+
 public class Ninja {
     private int chakra = 100;
     private String nome;

@@ -1,3 +1,5 @@
+package BatalhaNinja;
+
 public class Batalha {
     public Ninja lutar(Ninja primeiroNinja, Ninja segundoNinja){
         if (primeiroNinja.getNome() == "Itachi") {

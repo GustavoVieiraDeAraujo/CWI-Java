@@ -1,3 +1,7 @@
+import BatalhaNinja.Batalha;
+import BatalhaNinja.Jutsu;
+import BatalhaNinja.Ninja;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +18,7 @@ public class BatalhaTest {
         Batalha batalha = new Batalha();
         Ninja vencedor = batalha.lutar(naruto, gaara);
 
-        Assert.assertSame(naruto, vencedor);
+        Assert.assertEquals(naruto, vencedor);
     }
 
     @Test
