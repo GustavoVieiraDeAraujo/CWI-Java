@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class BatalhaTest {
     @Test
-    public void deveRetornarNinjaComJutsuMaisForteSeOsDoisGastamOMesmoChakraParaAtacar(){
+    public void deveRetornarNinjaComJutsuMaisForteSeOsDoisGastamOMesmoChakra(){
         Jutsu cloneDasSombras = new Jutsu(5, 10);
         Jutsu caixãoDeAreia = new Jutsu(5, 8);
 
