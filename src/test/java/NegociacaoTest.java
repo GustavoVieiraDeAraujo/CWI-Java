@@ -55,4 +55,37 @@ public class NegociacaoTest {
         Assert.assertFalse(foiPossivelNegociar);
     }
 
+    @Test
+    public void deveAtualizarSaldoDisponivelAoComprarUmJogador(){
+        Negociacao negociacao = new Negociacao();
+        Clube clubeteste = new Clube("Teste", 10, BigDecimal.valueOf(1000));
+        Jogador jogadorteste = new Zagueiro("Teste",27, clubeteste, 9, new Conservador(), BigDecimal.valueOf(100));
+
+        boolean foiPossivelNegociar = negociacao.negociar(clubeteste , jogadorteste);
+        double saldoRestante = clubeteste.getSaldoDisponivelEmCaixa();
+
+        Assert.assertEquals(860, saldoRestante,0);
+    }
+
+    @Test
+    public void deveAtualizarOClubeDoJogadorQuandoEleForComprado(){
+        Negociacao negociacao = new Negociacao();
+        Clube clubeteste = new Clube("Teste", 10, BigDecimal.valueOf(1000));
+        Jogador jogadorteste = new Zagueiro("Teste",27, null, 9, new Conservador(), BigDecimal.valueOf(100));
+
+        boolean foiPossivelNegociar = negociacao.negociar(clubeteste , jogadorteste);
+        String novoClube = jogadorteste.getClubeAtual();
+
+        Assert.assertEquals("Teste", novoClube);
+    }
+
+    @Test
+    public void deveMostarSemClubeQuandoJogadorNãoTiverClube(){
+        Jogador jogadorteste = new Zagueiro("Teste",27, null, 9, new Conservador(), BigDecimal.valueOf(100));
+
+        String clubeAtual = jogadorteste.getClubeAtual();
+
+        Assert.assertEquals("Sem Clube", clubeAtual);
+    }
+
 }

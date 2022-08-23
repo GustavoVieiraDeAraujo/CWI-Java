@@ -7,12 +7,13 @@ import java.math.BigDecimal;
 
 public class MeioDeCampo extends Jogador{
 
-    private static final double TAXA_MEIO_DE_CAMPO_IDADE = 0.7;
+    private final double TAXA_MEIO_DE_CAMPO_IDADE = 0.7;
 
     public MeioDeCampo(String nome, int idade, Clube clubeAtual, int reputacaoHistorica, ApetiteFinanceiro apetiteFinanceiro, BigDecimal preco) {
         super(nome, idade, clubeAtual, reputacaoHistorica, apetiteFinanceiro, preco);
     }
 
+    @Override
     public double valorMinimoDeCompraDoJogador(){
         double precoComApetite =  this.preco.doubleValue() * this.apetiteFinanceiro.getTaxa();
         if (this.idade > 30){
@@ -22,7 +23,8 @@ public class MeioDeCampo extends Jogador{
         }
     }
 
+    @Override
     public boolean temInteresseEmTrocarDeClube(Clube clube){
-        return (clube.getReputacaoHistorica() <= this.reputacaoHistorica-2) ? true : false;
+        return clube.getReputacaoHistorica() <= this.reputacaoHistorica-2;
     }
 }

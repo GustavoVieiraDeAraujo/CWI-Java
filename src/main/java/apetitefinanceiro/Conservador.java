@@ -1,8 +1,9 @@
 package apetitefinanceiro;
 
 public class Conservador extends ApetiteFinanceiro {
-    final double TAXA = 1.4;
+    final double taxa = 1.4;
+    @Override
     public double getTaxa() {
-        return TAXA;
+        return this.taxa;
     }
 }

@@ -23,11 +23,12 @@ public class Jogador {
         this.clubeAtual = clubeAtual;
         this.apetiteFinanceiro = apetiteFinanceiro;
     }
-
-    public boolean temInteresseEmTrocarDeClube(Clube clube){return (clube.getReputacaoHistorica() >= 1) ? true : false;}
+    public boolean temInteresseEmTrocarDeClube(Clube clube) {
+        return clube.getReputacaoHistorica() >= 1;
+    }
     public double valorMinimoDeCompraDoJogador() {
         return this.preco.doubleValue() * this.apetiteFinanceiro.getTaxa();
     }
     public String getClubeAtual() {return this.clubeAtual != null ? this.clubeAtual.getNome() : "Sem Clube";}
-    public void setClubeAtual(Clube clubeQueDesejaFazerTransferencia) {this.clubeAtual = clubeAtual;}
+    public void setClubeAtual(Clube clubeQueDesejaFazerTransferencia) {this.clubeAtual = clubeQueDesejaFazerTransferencia;}
 }

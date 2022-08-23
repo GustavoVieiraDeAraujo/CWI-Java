@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class Clube {
 
-    private static String nome;
-    private static int reputacaoHistorica;
-    private static BigDecimal saldoDisponivelEmCaixa;
+    private String nome;
+    private int reputacaoHistorica;
+    private BigDecimal saldoDisponivelEmCaixa;
 
     public Clube(String nome, int reputacaoHistorica, BigDecimal saldoDisponivelEmCaixa) {
         this.nome =nome;
@@ -25,6 +25,7 @@ public class Clube {
     }
 
     public void setSaldoDisponivelEmCaixa(double valorDoJogador) {
-        this.saldoDisponivelEmCaixa.subtract(BigDecimal.valueOf(valorDoJogador));
+        double novoSaldo = this.saldoDisponivelEmCaixa.doubleValue() - valorDoJogador;
+        this.saldoDisponivelEmCaixa = BigDecimal.valueOf(novoSaldo);
     }
 }

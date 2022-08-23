@@ -1,8 +1,9 @@
 package apetitefinanceiro;
 
 public class Indiferente extends ApetiteFinanceiro{
-    private final double TAXA = 1;
+    private final double taxa = 1;
+    @Override
     public double getTaxa() {
-        return TAXA;
+        return taxa;
     }
 }
