@@ -58,13 +58,11 @@ public class Aragorn extends Personagem implements Humano {
         Personagem atacante = mapa.buscarCasa(this.posicao);
         Personagem defensor = mapa.buscarCasa(this.posicao+1);
         if (defensor != null){
-            if (this.posicao < 10) {
-                if (!defensor.isSociedadeDoAnel()) {
-                    defensor.receberDanoNaConstituicao(20);
-                    mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                    if (mapa.getMapa()[this.posicao+1] == null) {
-                        atacante.setPosicao(this.posicao+1);
-                    }
+            if (this.posicao < 10 && !defensor.isSociedadeDoAnel()) {
+                defensor.receberDanoNaConstituicao(20);
+                mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
+                if (mapa.getMapa()[this.posicao+1] == null) {
+                    atacante.setPosicao(this.posicao+1);
                 }
             }
         }else {

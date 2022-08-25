@@ -4,15 +4,16 @@ import exceptions.*;
 import personagens.*;
 
 public class Mapa {
-    private Personagem[] mapa = new Personagem[10];
+
+    private Personagem[] Mapa = new Personagem[10];
     private int quantosPersonagensTemNoMapa;
 
     public void setMapa(Personagem[] mapa) {
-        this.mapa = mapa;
+        this.Mapa = mapa;
     }
 
     public Personagem[] getMapa() {
-        return mapa;
+        return Mapa;
     }
 
     public int getQuantosPersonagensTemNoMapa() {
@@ -20,38 +21,38 @@ public class Mapa {
     }
 
     public String exibir(){
+        StringBuilder bld = new StringBuilder();
         this.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-        String retorno = "";
-        for (Personagem personagem: mapa){
+        for (Personagem personagem: Mapa){
             if (personagem == null){
-                retorno += "| ";
+                bld.append("| ");
             }else {
-                retorno += "|" + personagem.toString();
+                bld.append("|").append(personagem.toString());
             }
         }
-        return retorno+"|";
+        bld.append("|");
+        return bld.toString();
     }
 
     public void inserir(int posicao, Personagem personagem){
         this.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-        if (this.mapa[posicao] != null){
+        if (this.Mapa[posicao] != null){
             throw new PosicaoOcupadaException();
         }else if(personagemEstaNoMapa(personagem)){
             throw new PersonagemJaEstaNoMapaException();
         }
         this.quantosPersonagensTemNoMapa +=1;
         personagem.setPosicao(posicao);
-        this.mapa[posicao] = personagem;
+        this.Mapa[posicao] = personagem;
     }
 
     public int buscarPosicao(Personagem personagem){
         this.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-
         int posicao;
         boolean teveErro = true;
 
-        for (posicao = 0; posicao < this.mapa.length; posicao++){
-            if (this.mapa[posicao] == personagem){
+        for (posicao = 0; posicao < this.Mapa.length; posicao++){
+            if (this.Mapa[posicao] == personagem){
                 teveErro = false;
                 break;
             }
@@ -63,11 +64,11 @@ public class Mapa {
     }
 
     public Personagem buscarCasa(int posicao){
-        return this.mapa[posicao];
+        return this.Mapa[posicao];
     }
 
     public boolean personagemEstaNoMapa(Personagem personagem){
-        for(Personagem temp: this.mapa) {
+        for(Personagem temp: this.Mapa) {
             if (temp == personagem) {
                 return true;
             }
@@ -75,10 +76,10 @@ public class Mapa {
         return false;
     }
 
-    public boolean TemAlgumMembroDaSociedadeDoAnel(){
+    public boolean temAlgumMembroDaSociedadeDoAnel(){
         this.verificaSeTemAlgumPersonagemMortoEDeletaEle();
         boolean teveErro = true;
-        for(Personagem temp: this.mapa) {
+        for(Personagem temp: this.Mapa) {
             if (temp != null && temp.isSociedadeDoAnel()) {
                 teveErro = false;
                 break;
@@ -92,8 +93,8 @@ public class Mapa {
 
     public void verificaSeTemAlgumPersonagemMortoEDeletaEle(){
         for (int posicao = 0; posicao < 10; posicao++){
-            if(this.mapa[posicao] != null && this.mapa[posicao].getConstituicao() == 0){
-                this.mapa[posicao] = null;
+            if(this.Mapa[posicao] != null && this.Mapa[posicao].getConstituicao() == 0){
+                this.Mapa[posicao] = null;
                 this.quantosPersonagensTemNoMapa -= 1;
             }
         }

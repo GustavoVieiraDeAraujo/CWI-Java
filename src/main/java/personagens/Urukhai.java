@@ -67,10 +67,8 @@ public class Urukhai extends Personagem implements Humano, Monstro {
         Personagem atacante = mapa.buscarCasa(this.posicao);
         Personagem defensor = mapa.buscarCasa(this.posicao-1);
         if (defensor != null){
-            if (this.posicao > 0) {
-                if (defensor.isSociedadeDoAnel()) {
-                    defensor.receberDanoNaConstituicao(14);
-                }
+            if (this.posicao > 0 && defensor.isSociedadeDoAnel()) {
+                defensor.receberDanoNaConstituicao(14);
             }
             mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
             if (mapa.getMapa()[this.posicao-1] == null) {

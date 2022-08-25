@@ -14,7 +14,7 @@ public class Simulador {
     }
 
     public void simular() {
-        while (mapa.TemAlgumMembroDaSociedadeDoAnel()) {
+        while (mapa.temAlgumMembroDaSociedadeDoAnel()) {
             if (mapa.getMapa()[9] != null && mapa.getMapa()[9].isSociedadeDoAnel()) {
                 break;
             }else {
