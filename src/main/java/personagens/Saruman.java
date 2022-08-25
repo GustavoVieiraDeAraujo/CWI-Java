@@ -1,16 +1,19 @@
 package personagens;
 
-import mapa.Mapa;
 import racas.Maia;
+import tiposdeclasse.TiposDeClasse;
 
-public class Saruman extends Personagem implements Maia{
+public class Saruman extends Personagem implements Maia {
 
-    public Saruman(){super(2,2,9,70,false);}
+    public Saruman() {
+        super(2, 2, 9, 70, false, TiposDeClasse.MAGO);
+    }
+
     private boolean reviveu = false;
 
     @Override
     public Object ressucitar() {
-        if (!reviveu){
+        if (!reviveu) {
             reviveu = true;
             return null;
         }
@@ -23,23 +26,6 @@ public class Saruman extends Personagem implements Maia{
     }
 
     @Override
-    public String toString(){
-        return "S";
-    }
+    public String toString() {return "S";}
 
-    @Override
-    public void atacar(Mapa mapa) {
-        Personagem atacante = mapa.buscarCasa(posicao);
-        if ( posicao > 0) {
-            for(Personagem defensor : mapa.getMapa()){
-                if(defensor != null && defensor.isSociedadeDoAnel()){
-                    defensor.receberDanoNaConstituicao(9);
-                }
-            }
-            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-            if(mapa.getQuantosPersonagensTemNoMapa() == 1){
-                atacante.setPosicao(posicao+=1);
-            }
-        }
-    }
 }

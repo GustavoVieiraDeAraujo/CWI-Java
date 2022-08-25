@@ -1,28 +1,12 @@
 package personagens;
 
-import mapa.Mapa;
 import racas.Humano;
+import tiposdeclasse.TiposDeClasse;
 
 public class Boromir extends Personagem implements Humano{
 
-    public Boromir(){super(7,6,3,40,true);}
+    public Boromir(){super(7,6,3,40,true, TiposDeClasse.GUERREIRO);}
 
-    @Override
-    public void atacar(Mapa mapa) {
-        Personagem atacante = mapa.buscarCasa(posicao);
-        Personagem defensor = mapa.buscarCasa(posicao+1);
-        if (defensor != null){
-            if (posicao < 10 && !defensor.isSociedadeDoAnel()) {
-                defensor.receberDanoNaConstituicao(14);
-                mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                if (mapa.getMapa()[posicao+1] == null) {
-                    atacante.setPosicao(posicao+1);
-                }
-            }
-        }else {
-            atacante.setPosicao(posicao+1);
-        }
-    }
     @Override
     public String falar() {
         return "One does not simply walk into Mordor.";

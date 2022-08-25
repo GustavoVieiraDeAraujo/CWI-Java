@@ -20,7 +20,7 @@ public class Simulador {
             }else {
                 for (Personagem personagem1 : mapa.getMapa()){
                     if(personagem1 != null){
-                        personagem1.atacar(mapa);
+                        personagem1.atacar(mapa, personagem1.getClasse(), personagem1.isSociedadeDoAnel());
                     }
                 }
             }
