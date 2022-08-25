@@ -3,40 +3,10 @@ package personagens;
 import mapa.Mapa;
 import racas.Anao;
 
-public class Gimli extends Personagem implements Anao {
+public class Gimli extends Personagem implements Anao{
 
-    private int constituicao = 60;
+    public Gimli(){super(9,2,4,60,true);}
     private int vezesQueBebeu = 0;
-    private int posicao = 0;
-
-    @Override
-    public int getConstituicao() {
-        return constituicao;
-    }
-
-    @Override
-    public void receberDanoNaConstituicao(int dano) {
-        int diferenca = this.constituicao-dano;
-        if (diferenca < 0){
-            diferenca=0;
-        }
-        this.constituicao = diferenca;
-    }
-
-    @Override
-    public boolean isSociedadeDoAnel() {
-        return true;
-    }
-
-    @Override
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
-    }
-
-    @Override
-    public int getPosicao() {
-        return posicao;
-    }
 
     @Override
     public void beber(){
@@ -55,18 +25,18 @@ public class Gimli extends Personagem implements Anao {
 
     @Override
     public void atacar(Mapa mapa) {
-        Personagem atacante = mapa.buscarCasa(this.posicao);
-        Personagem defensor = mapa.buscarCasa(this.posicao+1);
+        Personagem atacante = mapa.buscarCasa(posicao);
+        Personagem defensor = mapa.buscarCasa(posicao+1);
         if (defensor != null){
-            if (this.posicao < 10 &&!defensor.isSociedadeDoAnel()) {
+            if (posicao < 10 &&!defensor.isSociedadeDoAnel()) {
                 defensor.receberDanoNaConstituicao(18);
                 mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                if (mapa.getMapa()[this.posicao+1] == null) {
-                    atacante.setPosicao(this.posicao+1);
+                if (mapa.getMapa()[posicao+1] == null) {
+                    atacante.setPosicao(posicao+1);
                 }
             }
         }else {
-            atacante.setPosicao(this.posicao+1);
+            atacante.setPosicao(posicao+1);
         }
     }
 }

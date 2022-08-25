@@ -3,39 +3,9 @@ package personagens;
 import mapa.Mapa;
 import racas.Elfo;
 
-public class Legolas extends Personagem implements Elfo {
+public class Legolas extends Personagem implements Elfo{
 
-    private int posicao = 0;
-    private int constituicao = 80;
-
-    @Override
-    public int getConstituicao() {
-        return constituicao;
-    }
-
-    @Override
-    public void receberDanoNaConstituicao(int dano) {
-        int diferenca = this.constituicao-dano;
-        if (diferenca < 0){
-            diferenca=0;
-        }
-        this.constituicao = diferenca;
-    }
-
-    @Override
-    public boolean isSociedadeDoAnel() {
-        return true;
-    }
-
-    @Override
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
-    }
-
-    @Override
-    public int getPosicao() {
-        return posicao;
-    }
+    public Legolas(){super(5,10,6,80,true);}
 
     @Override
     public String falaEmElfico(){
@@ -53,13 +23,13 @@ public class Legolas extends Personagem implements Elfo {
 
     @Override
     public void atacar(Mapa mapa) {
-        Personagem atacante = mapa.buscarCasa(this.posicao);
+        Personagem atacante = mapa.buscarCasa(posicao);
 
-        int posicaoDefensor1 = this.posicao+1;
-        int posicaoDefensor2 = this.posicao+2;
-        int posicaoDefensor3 = this.posicao+3;
+        int posicaoDefensor1 = posicao+1;
+        int posicaoDefensor2 = posicao+2;
+        int posicaoDefensor3 = posicao+3;
 
-        if (this.posicao < 10) {
+        if (posicao < 10) {
             if (posicaoDefensor1 < 10 && posicaoDefensor2 < 10 && posicaoDefensor3 < 10) {
                 Personagem defensor1 = mapa.buscarCasa(posicaoDefensor1);
                 Personagem defensor2 = mapa.buscarCasa(posicaoDefensor2);
@@ -70,9 +40,9 @@ public class Legolas extends Personagem implements Elfo {
                     defensor1 = mapa.buscarCasa(posicaoDefensor1);
                     defensor2 = mapa.buscarCasa(posicaoDefensor2);
                     if (defensor2 == null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +2);
+                        atacante.setPosicao(posicao +2);
                     } else if (defensor2 != null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +1);
+                        atacante.setPosicao(posicao +1);
                     }
                 } else if (defensor2 != null) {
                     defensor2.receberDanoNaConstituicao(20);
@@ -80,9 +50,9 @@ public class Legolas extends Personagem implements Elfo {
                     defensor1 = mapa.buscarCasa(posicaoDefensor1);
                     defensor2 = mapa.buscarCasa(posicaoDefensor2);
                     if (defensor2 == null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +2);
+                        atacante.setPosicao(posicao +2);
                     } else if (defensor2 != null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +1);
+                        atacante.setPosicao(posicao +1);
                     }
                 } else if (defensor1 != null) {
                     defensor1.receberDanoNaConstituicao(10);
@@ -90,12 +60,12 @@ public class Legolas extends Personagem implements Elfo {
                     defensor1 = mapa.buscarCasa(posicaoDefensor1);
                     defensor2 = mapa.buscarCasa(posicaoDefensor2);
                     if (defensor2 == null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +2);
+                        atacante.setPosicao(posicao +2);
                     } else if (defensor2 != null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +1);
+                        atacante.setPosicao(posicao +1);
                     }
                 } else {
-                    atacante.setPosicao(this.posicao +2);
+                    atacante.setPosicao(posicao +2);
                 }
 
             } else if (posicaoDefensor1 < 10 && posicaoDefensor2 < 10 && posicaoDefensor3 == 10) {
@@ -107,9 +77,9 @@ public class Legolas extends Personagem implements Elfo {
                     defensor1 = mapa.buscarCasa(posicaoDefensor1);
                     defensor2 = mapa.buscarCasa(posicaoDefensor2);
                     if (defensor2 == null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +2);
+                        atacante.setPosicao(posicao +2);
                     } else if (defensor2 != null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +1);
+                        atacante.setPosicao(posicao +1);
                     }
                 } else if (defensor1 != null) {
                     defensor1.receberDanoNaConstituicao(10);
@@ -117,12 +87,12 @@ public class Legolas extends Personagem implements Elfo {
                     defensor1 = mapa.buscarCasa(posicaoDefensor1);
                     defensor2 = mapa.buscarCasa(posicaoDefensor2);
                     if (defensor2 == null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +2);
+                        atacante.setPosicao(posicao +2);
                     } else if (defensor2 != null && defensor1 == null) {
-                        atacante.setPosicao(this.posicao +1);
+                        atacante.setPosicao(posicao +1);
                     }
                 } else {
-                    atacante.setPosicao(this.posicao +2);
+                    atacante.setPosicao(posicao +2);
                 }
 
             } else if (posicaoDefensor1 < 10 && posicaoDefensor2 == 10 && posicaoDefensor3 > 10) {
@@ -132,12 +102,13 @@ public class Legolas extends Personagem implements Elfo {
                     mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
                     defensor1 = mapa.buscarCasa(posicaoDefensor1);
                     if (defensor1 != null) {
-                        atacante.setPosicao(this.posicao +2);
+                        atacante.setPosicao(posicao +2);
                     }
                 } else {
-                    atacante.setPosicao(this.posicao +2);
+                    atacante.setPosicao(posicao +2);
                 }
             }
         }
+
     }
 }

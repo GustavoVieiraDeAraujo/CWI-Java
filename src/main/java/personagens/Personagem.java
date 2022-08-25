@@ -4,8 +4,20 @@ import mapa.Mapa;
 
 public abstract class Personagem {
 
-    private int constituicao;
-    private int posicao;
+    protected final int forca;
+    protected final int agilidade;
+    protected final int inteligencia;
+    protected int constituicao;
+    protected final boolean sociedadeDoAnel;
+    protected int posicao = 0;
+
+    public Personagem(int forca, int agilidade, int inteligencia, int constituicao ,boolean sociedadeDoAnel) {
+        this.forca = forca;
+        this.agilidade = agilidade;
+        this.inteligencia = inteligencia;
+        this.sociedadeDoAnel = sociedadeDoAnel;
+        this.constituicao = constituicao;
+    }
 
     public int getConstituicao() {
         return constituicao;
@@ -19,11 +31,14 @@ public abstract class Personagem {
         this.posicao = posicao;
     }
 
-    public boolean isSociedadeDoAnel() {
-        return false;
+    public boolean isSociedadeDoAnel() {return sociedadeDoAnel;}
+
+    public void receberDanoNaConstituicao(int dano) {
+        int diferenca = this.constituicao-dano;
+        if (diferenca < 0){
+            diferenca=0;
+        }
+        this.constituicao = diferenca;
     }
-
-    public void receberDanoNaConstituicao(int dano) {}
-
-    public void atacar(Mapa mapa){};
+    public void atacar(Mapa mapa){}
 }

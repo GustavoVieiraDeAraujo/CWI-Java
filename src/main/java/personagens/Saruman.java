@@ -5,45 +5,13 @@ import racas.Maia;
 
 public class Saruman extends Personagem implements Maia{
 
-    private int constituicao = 70;
-
-    private int posicao = 0;
-
-    @Override
-    public int getConstituicao() {
-        return constituicao;
-    }
-
-    @Override
-    public void receberDanoNaConstituicao(int dano) {
-        int diferenca = this.constituicao-dano;
-        if (diferenca < 0){
-            diferenca=0;
-        }
-        this.constituicao = diferenca;
-    }
-
-    @Override
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
-    }
-
-    @Override
-    public int getPosicao() {
-        return posicao;
-    }
-
+    public Saruman(){super(2,2,9,70,false);}
     private boolean reviveu = false;
 
     @Override
-    public boolean isSociedadeDoAnel() {
-        return false;
-    }
-
-    @Override
     public Object ressucitar() {
-        if (!this.reviveu){
-            this.reviveu = true;
+        if (!reviveu){
+            reviveu = true;
             return null;
         }
         return null;
@@ -61,8 +29,8 @@ public class Saruman extends Personagem implements Maia{
 
     @Override
     public void atacar(Mapa mapa) {
-        Personagem atacante = mapa.buscarCasa(this.posicao);
-        if ( this.posicao > 0) {
+        Personagem atacante = mapa.buscarCasa(posicao);
+        if ( posicao > 0) {
             for(Personagem defensor : mapa.getMapa()){
                 if(defensor != null && defensor.isSociedadeDoAnel()){
                     defensor.receberDanoNaConstituicao(9);
@@ -70,7 +38,7 @@ public class Saruman extends Personagem implements Maia{
             }
             mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
             if(mapa.getQuantosPersonagensTemNoMapa() == 1){
-                atacante.setPosicao(this.posicao+=1);
+                atacante.setPosicao(posicao+=1);
             }
         }
     }
