@@ -8,16 +8,6 @@ public class Orc extends Personagem implements Monstro{
     public Orc(){super(7,4,1,30,false);}
 
     @Override
-    public String grunir(){
-        return "Arrrggghhh";
-    }
-
-    @Override
-    public String toString(){
-        return "O";
-    }
-
-    @Override
     public void atacar(Mapa mapa) {
         Personagem atacante = mapa.buscarCasa(posicao);
         Personagem defensor = mapa.buscarCasa(posicao-1);
@@ -33,4 +23,16 @@ public class Orc extends Personagem implements Monstro{
             atacante.setPosicao(posicao-1);
         }
     }
+
+    @Override
+    public String toString(){
+        return "O";
+    }
+
+    @Override
+    public String grunir(){
+        return "Arrrggghhh";
+    }
+
+
 }

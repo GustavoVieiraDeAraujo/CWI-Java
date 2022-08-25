@@ -6,21 +6,22 @@ import racas.Anao;
 public class Gimli extends Personagem implements Anao{
 
     public Gimli(){super(9,2,4,60,true);}
-    private int vezesQueBebeu = 0;
 
     @Override
     public void beber(){
         this.vezesQueBebeu +=1;
     }
 
-    @Override
-    public String falar() {
-       return this.vezesQueBebeu == 3 ? "What did I say? He can't hold his liquor!" : "Let them come. There is one Dwarf yet in Moria who still draws breath.";
-    }
+    private int vezesQueBebeu = 0;
 
     @Override
     public String toString(){
         return "I";
+    }
+
+    @Override
+    public String falar() {
+       return this.vezesQueBebeu == 3 ? "What did I say? He can't hold his liquor!" : "Let them come. There is one Dwarf yet in Moria who still draws breath.";
     }
 
     @Override

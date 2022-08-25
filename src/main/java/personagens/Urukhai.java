@@ -8,12 +8,8 @@ public class Urukhai extends Personagem implements Humano, Monstro{
     public Urukhai(){super(8,6,3,45,false);}
 
     @Override
-    public void envelhecer() {
-        int diferenca = constituicao - 2;
-        if (diferenca < 0) {
-            diferenca = 0;
-        }
-        constituicao = diferenca;
+    public String grunir() {
+        return "Uuurrrrrr";
     }
 
     @Override
@@ -22,13 +18,12 @@ public class Urukhai extends Personagem implements Humano, Monstro{
     }
 
     @Override
-    public String grunir() {
-        return "Uuurrrrrr";
-    }
-
-    @Override
-    public String toString(){
-        return "U";
+    public void envelhecer() {
+        int diferenca = constituicao - 2;
+        if (diferenca < 0) {
+            diferenca = 0;
+        }
+        constituicao = diferenca;
     }
 
     @Override
@@ -47,4 +42,11 @@ public class Urukhai extends Personagem implements Humano, Monstro{
             atacante.setPosicao(posicao-1);
         }
     }
+
+    @Override
+    public String toString(){
+        return "U";
+    }
+
+
 }

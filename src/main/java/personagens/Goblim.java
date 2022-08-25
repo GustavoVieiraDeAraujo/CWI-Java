@@ -7,11 +7,6 @@ public class Goblim extends Personagem implements Monstro{
     public Goblim(){super(3,6,1,20,false);}
 
     @Override
-    public String grunir(){
-        return "Iiisshhhh";
-    }
-
-    @Override
     public String toString(){
         return "M";
     }
@@ -110,4 +105,11 @@ public class Goblim extends Personagem implements Monstro{
             }
         }
     }
+
+    @Override
+    public String grunir(){
+        return "Iiisshhhh";
+    }
+
+
 }

@@ -8,22 +8,17 @@ public class Gandalf extends Personagem implements Maia{
     private boolean reviveu = false;
 
     @Override
+    public String falar(){
+        return "A Wizard is never late, nor is he early. He arrives precisely when he means to.";
+    }
+
+    @Override
     public Gandalf ressucitar() {
         if (!reviveu){
             reviveu = true;
             return new Gandalf();
         }
         return null;
-    }
-
-    @Override
-    public String falar(){
-        return "A Wizard is never late, nor is he early. He arrives precisely when he means to.";
-    }
-
-    @Override
-    public String toString(){
-        return "G";
     }
 
     @Override
@@ -41,4 +36,11 @@ public class Gandalf extends Personagem implements Maia{
             }
         }
     }
+
+    @Override
+    public String toString(){
+        return "G";
+    }
+
+
 }
