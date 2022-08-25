@@ -4,8 +4,8 @@ import mapa.Mapa;
 
 public abstract class Personagem {
 
-    private int constituicao = 0;
-    private int posicao = 0;
+    private int constituicao;
+    private int posicao;
 
     public int getConstituicao() {
         return constituicao;
