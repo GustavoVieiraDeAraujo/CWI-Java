@@ -47,6 +47,7 @@ public abstract class Personagem {
     }
     public void atacar(Mapa mapa,TiposDeClasse classe, boolean sociedadeDoAnel){
         Personagem atacante = mapa.buscarCasa(posicao);
+
         if(classe.equals(TiposDeClasse.GUERREIRO)){
             if (sociedadeDoAnel){
                 Personagem defensor = mapa.buscarCasa(posicao+1);
@@ -108,181 +109,44 @@ public abstract class Personagem {
         }
 
         if(classe.equals(TiposDeClasse.ARQUEIRO)){
-            if(sociedadeDoAnel){
-                int posicaoDefensor1 = posicao+1;
-                int posicaoDefensor2 = posicao+2;
-                int posicaoDefensor3 = posicao+3;
-
-                if (posicao < 10) {
-                    if (posicaoDefensor1 < 10 && posicaoDefensor2 < 10 && posicaoDefensor3 < 10) {
-                        Personagem defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                        Personagem defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                        Personagem defensor3 = mapa.buscarCasa(posicaoDefensor3);
-                        if (defensor3 != null) {
-                            defensor3.receberDanoNaConstituicao(atacante.agilidade*3);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null) {
-                                atacante.setPosicao(posicao +2);
-                            } else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao +1);
-                            }
-                        } else if (defensor2 != null) {
-                            defensor2.receberDanoNaConstituicao(atacante.agilidade*2);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null) {
-                                atacante.setPosicao(posicao +2);
-                            } else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao +1);
-                            }
-                        } else if (defensor1 != null) {
-                            defensor1.receberDanoNaConstituicao(atacante.agilidade);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null) {
-                                atacante.setPosicao(posicao +2);
-                            } else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao +1);
-                            }
-                        } else {
-                            atacante.setPosicao(posicao +2);
-                        }
-
-                    } else if (posicaoDefensor1 < 10 && posicaoDefensor2 < 10 && posicaoDefensor3 == 10) {
-                        Personagem defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                        Personagem defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                        if (defensor2 != null) {
-                            defensor2.receberDanoNaConstituicao(atacante.agilidade*2);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null) {
-                                atacante.setPosicao(posicao +2);
-                            } else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao +1);
-                            }
-                        } else if (defensor1 != null) {
-                            defensor1.receberDanoNaConstituicao(atacante.agilidade);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null) {
-                                atacante.setPosicao(posicao +2);
-                            } else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao +1);
-                            }
-                        } else {
-                            atacante.setPosicao(posicao +2);
-                        }
-
-                    } else if (posicaoDefensor1 < 10 && posicaoDefensor2 == 10 && posicaoDefensor3 > 10) {
-                        Personagem defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                        if (defensor1 != null) {
-                            defensor1.receberDanoNaConstituicao(atacante.agilidade);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            if (defensor1 != null) {
-                                atacante.setPosicao(posicao +2);
-                            }
-                        } else {
-                            atacante.setPosicao(posicao +2);
+            int diferencaMaisLonge = 3;
+            if(sociedadeDoAnel) {
+                while (diferencaMaisLonge > 0){
+                    if(posicao+diferencaMaisLonge <= 9){
+                        Personagem defensor = mapa.buscarCasa(posicao+diferencaMaisLonge);
+                        if (defensor != null && !defensor.isSociedadeDoAnel()) {
+                            defensor.receberDanoNaConstituicao(atacante.agilidade * diferencaMaisLonge);
+                            break;
                         }
                     }
+                    diferencaMaisLonge-=1;
+                }
+                mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
+                Personagem posicaoMaisUmEstaOcupada = mapa.buscarCasa(posicao+1) ;
+                Personagem posicaoMaisDoisEstaOcupada = mapa.buscarCasa(posicao+2);
+                if (posicaoMaisDoisEstaOcupada == null && posicaoMaisUmEstaOcupada == null){
+                    atacante.setPosicao(posicao +2);
+                } else if (posicaoMaisDoisEstaOcupada != null && posicaoMaisUmEstaOcupada == null) {
+                    atacante.setPosicao(posicao +1);
                 }
             }else {
-
-                int posicaoDefensor1 = posicao-1;
-                int posicaoDefensor2 = posicao-2;
-                int posicaoDefensor3 = posicao-3;
-
-                if (posicao > 0){
-
-                    if( posicaoDefensor1 > 0 && posicaoDefensor2 > 0 && posicaoDefensor3 > 0){
-                        Personagem defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                        Personagem defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                        Personagem defensor3 = mapa.buscarCasa(posicaoDefensor3);
-                        if (defensor3 != null && defensor3.isSociedadeDoAnel()){
-                            defensor3.receberDanoNaConstituicao(atacante.agilidade*3);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null){
-                                atacante.setPosicao(posicao -2);
-                            } else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao -1);
-                            }
-                        } else if (defensor2 != null && defensor2.isSociedadeDoAnel()) {
-                            defensor2.receberDanoNaConstituicao(atacante.agilidade*2);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null){
-                                atacante.setPosicao(posicao -2);
-                            }else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao -1);
-                            }
-                        } else if (defensor1 != null && defensor1.isSociedadeDoAnel()){
-                            defensor1.receberDanoNaConstituicao(6);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null){
-                                atacante.setPosicao(posicao -2);
-                            }else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao -1);
-                            }
-                        } else {
-                            if (defensor1 == null && defensor2 == null){
-                                atacante.setPosicao(posicao -2);
-                            }else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao -1);
-                            }
-                        }
-
-                    } else if (posicaoDefensor1 < 0 && posicaoDefensor2 < 0 && posicaoDefensor3 == -1) {
-                        Personagem defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                        Personagem defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                        if (defensor2 != null) {
-                            defensor2.receberDanoNaConstituicao(atacante.agilidade*2);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null){
-                                atacante.setPosicao(posicao -2);
-                            }else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao -1);
-                            }
-                        }else if (defensor1 != null){
-                            defensor1.receberDanoNaConstituicao(atacante.agilidade);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            defensor2 = mapa.buscarCasa(posicaoDefensor2);
-                            if (defensor2 == null && defensor1 == null){
-                                atacante.setPosicao(posicao -2);
-                            }else if (defensor2 != null && defensor1 == null) {
-                                atacante.setPosicao(posicao -1);
-                            }
-                        } else {
-                            atacante.setPosicao(posicao - 2);
-                        }
-
-                    } else if (posicaoDefensor1 > 0 && posicaoDefensor2 == -1 && posicaoDefensor3 < 0) {
-                        Personagem defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                        if (defensor1 != null){
-                            defensor1.receberDanoNaConstituicao(atacante.agilidade);
-                            mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
-                            defensor1 = mapa.buscarCasa(posicaoDefensor1);
-                            if (defensor1 != null) {
-                                atacante.setPosicao(posicao -1);
-                            }
-                        } else {
-                            atacante.setPosicao(posicao - 2);
+                while (diferencaMaisLonge > 0){
+                    if(posicao-diferencaMaisLonge >= 0){
+                        Personagem defensor = mapa.buscarCasa(posicao-diferencaMaisLonge);
+                        if (defensor != null && defensor.isSociedadeDoAnel()) {
+                            defensor.receberDanoNaConstituicao(atacante.agilidade * diferencaMaisLonge);
+                            break;
                         }
                     }
+                    diferencaMaisLonge-=1;
+                }
+                mapa.verificaSeTemAlgumPersonagemMortoEDeletaEle();
+                Personagem posicaoMaisUmEstaOcupada = mapa.buscarCasa(posicao-1) ;
+                Personagem posicaoMaisDoisEstaOcupada = mapa.buscarCasa(posicao-2);
+                if (posicaoMaisDoisEstaOcupada == null && posicaoMaisUmEstaOcupada == null){
+                    atacante.setPosicao(posicao -2);
+                } else if (posicaoMaisDoisEstaOcupada != null && posicaoMaisUmEstaOcupada == null) {
+                    atacante.setPosicao(posicao -1);
                 }
             }
         }
